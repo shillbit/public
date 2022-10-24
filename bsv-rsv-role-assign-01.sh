@@ -99,11 +99,11 @@ Check the Subscription details before proceeding - Press [Enter] to continue..."
         printf "\e[1m%s\e[0m\n%s\n" "FAILURE: Assignment: Backup Reader Role not assigned to Azure Resource Group: ${azResourceGroupName}"
     fi
 
-    az role assignment create --assignee "${azSamiId}" --role "Network Consumer (Dev)" --scope "${azNetworkResourceGroupId}" --subscription "${azSubscriptionName}" >/dev/null 2>&1
+    az role assignment create --assignee "${azSamiId}" --role "Network Contributor" --scope "${azNetworkResourceGroupId}" --subscription "${azSubscriptionName}" >/dev/null 2>&1
     if [[ $? -eq 0 ]]; then
-        printf "\e[1m%s\e[0m\n%s\n" "SUCCESS: Assignment: Network Consumer (Dev) Role assigned to Azure Resource Group: ${azNetworkResourceGroupName}"
+        printf "\e[1m%s\e[0m\n%s\n" "SUCCESS: Assignment: Network Contributor Role assigned to Azure Resource Group: ${azNetworkResourceGroupName}"
     else
-        printf "\e[1m%s\e[0m\n%s\n" "FAILURE: Assignment: Network Consumer (Dev) Role not assigned to Azure Resource Group: ${azNetworkResourceGroupName}"
+        printf "\e[1m%s\e[0m\n%s\n" "FAILURE: Assignment: Network Contributor Role not assigned to Azure Resource Group: ${azNetworkResourceGroupName}"
     fi
 
     read -p "Press [Enter] to continue..."
