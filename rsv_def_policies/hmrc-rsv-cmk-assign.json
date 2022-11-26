@@ -1,0 +1,8 @@
+{
+    "effect": {
+        "value": "Audit"
+    },
+    "enableDoubleEncryption": {
+        "value": true
+    }
+}
