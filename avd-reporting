@@ -1,0 +1,12 @@
+let Users = WVDConnections | where _ResourceId has_any (
+"/subscriptions/7fa9d225-56d7-458a-bbe6-adb4f86a0c01/resourcegroups/rg-nhsei-uks-prd-avd-pltf-01/providers/microsoft.desktopvirtualization/hostpools/hp-nhsei-uks-prd-avd-01", 
+"/subscriptions/7fa9d225-56d7-458a-bbe6-adb4f86a0c01/resourcegroups/rg-nhsei-uks-prd-avd-pltf-01/providers/microsoft.desktopvirtualization/hostpools/hp-nhsei-uks-prd-avd-02", 
+"/subscriptions/7fa9d225-56d7-458a-bbe6-adb4f86a0c01/resourcegroups/rg-nhsei-uks-prd-avd-pltf-01/providers/microsoft.desktopvirtualization/hostpools/hp-nhsei-uks-prd-avd-04", 
+"/subscriptions/7fa9d225-56d7-458a-bbe6-adb4f86a0c01/resourcegroups/rg-nhsei-ukw-prd-avd-pltf-01/providers/microsoft.desktopvirtualization/hostpools/hp-nhsei-ukw-prd-avd-01", 
+"/subscriptions/7fa9d225-56d7-458a-bbe6-adb4f86a0c01/resourcegroups/rg-nhsei-ukw-prd-avd-pltf-01/providers/microsoft.desktopvirtualization/hostpools/hp-nhsei-ukw-prd-avd-02", 
+"/subscriptions/7fa9d225-56d7-458a-bbe6-adb4f86a0c01/resourcegroups/rg-nhsei-ukw-prd-avd-pltf-01/providers/microsoft.desktopvirtualization/hostpools/hp-nhsei-ukw-prd-avd-04") and State == "Connected";
+Users
+| where TimeGenerated > ago(7d)
+// // | project TimeGenerated, CorrelationId, UserName, State, _ResourceId
+| summarize Users=dcount(UserName) by bin(TimeGenerated, 1d)
+| render barchart
