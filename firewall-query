@@ -1,0 +1,6 @@
+AzureDiagnostics
+| where ResourceType == "AZUREFIREWALLS"
+| where msg_s has "Deny"
+| where msg_s has "172.31.109.102"
+|sort by TimeGenerated desc
+| project TimeGenerated,Category,msg_s
